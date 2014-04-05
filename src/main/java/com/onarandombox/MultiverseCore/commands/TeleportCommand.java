@@ -89,30 +89,34 @@ public class TeleportCommand extends MultiverseCommand {
         }
         
         // Custom Filtering Code
-        Boolean filterFlag1 = false;
-        Boolean filterFlag2 = false;
+        Permission menu = new Permission("multiverse.teleport.filter.bypass", "Allows immunity from Multiverse's teleport filter.", PermissionDefault.OP);
         
-        if (destinationName.equals("Dragon2_nether")) filterFlag1 = true;
-        if (destinationName.equals("Dragon2_the_end")) filterFlag1 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Dragon2")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Main")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("DragonCreative")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Creative")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Dragon2")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Main")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("DragonCreative")) filterFlag2 = true;
-        if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Creative")) filterFlag2 = true;
+        if (!teleportee.hasPermission("multiverse.teleport.filter.bypass"))
+        {	
+        	Boolean filterFlag1 = false;
+        	Boolean filterFlag2 = false;
         
-        if (filterFlag1 == true && sender instanceof Player)
-        {
-        	this.messaging.sendMessage(sender, String.format("You're not allowed to teleport to " + destinationName + "."), false);
-        	return;
-        	
-        }
-        if (filterFlag2 == true && sender instanceof Player)
-        {
-        	this.messaging.sendMessage(sender, String.format("You're not allowed to teleport to " + destinationName + " when in " + teleportee.getWorld().getName() + "."), false);
-        	return;
+        	if (destinationName.equals("Dragon2_nether")) filterFlag1 = true;
+        	if (destinationName.equals("Dragon2_the_end")) filterFlag1 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Dragon2")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Main")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("DragonCreative")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_nether") && destinationName.equals("Creative")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Dragon2")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Main")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("DragonCreative")) filterFlag2 = true;
+        	if (teleportee.getWorld().getName().equals("Dragon2_the_end") && destinationName.equals("Creative")) filterFlag2 = true;
+        
+        	if (filterFlag1 == true && sender instanceof Player)
+        	{
+        		this.messaging.sendMessage(sender, String.format("You're not allowed to teleport to " + destinationName + "."), false);
+        		return;	
+        	}
+        	if (filterFlag2 == true && sender instanceof Player)
+        	{
+        		this.messaging.sendMessage(sender, String.format("You're not allowed to teleport to " + destinationName + " when in " + teleportee.getWorld().getName() + "."), false);
+        		return;
+        	}
         }
         
         DestinationFactory df = this.plugin.getDestFactory();
