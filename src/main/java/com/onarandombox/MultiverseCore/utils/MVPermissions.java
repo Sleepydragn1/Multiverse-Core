@@ -48,19 +48,6 @@ public class MVPermissions implements PermissionsInterface {
     }
 
     /**
-     * Check if a Player can ignore a teleport filter blacklist entry.
-     *
-     * @param p The {@link Player} to check.
-     * @param w The {@link MultiverseWorld} the player wants to teleport to.
-     * @return Whether the player can ignore the blacklist entry.
-     */
-    public boolean canIgnoreTeleportFilterBlacklistRestriction(Player p, MultiverseWorld w) {
-    	if (p.hasPermission("mv.bypass.teleportfilter.*")) return true;
-    	if (p.hasPermission("mv.bypass.teleportfilterblacklist." + w.getName())) return true;
-    	else return false;
-    }
-    
-    /**
      * Check if a Player can ignore a teleport filter rule.
      *
      * @param p The {@link Player} to check.
@@ -68,7 +55,7 @@ public class MVPermissions implements PermissionsInterface {
      * @param w The {@link MultiverseWorld} the player wants to teleport to.
      * @return Whether the player can ignore the filter rule.
      */
-    public boolean canIgnoreTeleportFilterRuleRestriction(Player p, MultiverseWorld x, MultiverseWorld w) {
+    public boolean canIgnoreTeleportFilterRestriction(Player p, MultiverseWorld x, MultiverseWorld w) {
     	if (p.hasPermission("mv.bypass.teleportfilter.*")) return true;
     	if (p.hasPermission("mv.bypass.teleportfilterblacklist." + w.getName() + x.getName())) return true;
     	else return false;
